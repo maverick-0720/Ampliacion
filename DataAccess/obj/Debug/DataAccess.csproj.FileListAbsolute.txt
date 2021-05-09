@@ -1,0 +1,17 @@
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\EntitiesPOJO.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.AccessControl.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.Permissions.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\EntitiesPOJO.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.AccessControl.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.Permissions.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\DataAccess\obj\Debug\DataAccess.pdb

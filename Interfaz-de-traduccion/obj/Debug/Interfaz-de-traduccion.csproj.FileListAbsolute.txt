@@ -1,0 +1,12 @@
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\Interfaz-de-traduccion.exe.config
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\Interfaz-de-traduccion.exe
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\Interfaz-de-traduccion.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\EntitiesPOJO.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\Newtonsoft.Json.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\EntitiesPOJO.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\bin\Debug\Newtonsoft.Json.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\obj\Debug\Interfaz-de-traduccion.csprojAssemblyReference.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\obj\Debug\Interfaz-de-traduccion.csproj.CoreCompileInputs.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\obj\Debug\Interfaz-de-traduccion.csproj.CopyComplete
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\obj\Debug\Interfaz-de-traduccion.exe
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\Interfaz-de-traduccion\obj\Debug\Interfaz-de-traduccion.pdb

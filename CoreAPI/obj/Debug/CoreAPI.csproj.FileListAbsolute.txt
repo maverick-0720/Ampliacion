@@ -1,0 +1,15 @@
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\CoreAPI.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\CoreAPI.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\DataAccess.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\EntitiesPOJO.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\Exception.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\DataAccess.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\EntitiesPOJO.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\Exception.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\obj\Debug\CoreAPI.csprojAssemblyReference.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\obj\Debug\CoreAPI.csproj.CoreCompileInputs.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\obj\Debug\CoreAPI.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\CoreAPI\obj\Debug\CoreAPI.pdb

@@ -1,0 +1,6 @@
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\bin\Debug\EntitiesPOJO.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\bin\Debug\EntitiesPOJO.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\obj\Debug\EntitiesPOJO.csproj.CoreCompileInputs.cache
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\obj\Debug\EntitiesPOJO.dll
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\obj\Debug\EntitiesPOJO.pdb
+C:\Users\RogerRetanaMcNally\Desktop\Ampliación\Examen-de-ampliacion\EntitiesPOJO\obj\Debug\EntitiesPOJO.csprojAssemblyReference.cache

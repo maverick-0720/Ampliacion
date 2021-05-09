@@ -1,0 +1,261 @@
+--Creación de base de datos y tablas necesarias
+
+CREATE DATABASE Diccionario
+USE Diccionario 
+GO
+
+CREATE TABLE Idioma (
+
+	Id int identity(1,1),
+	IdiomaNuevo varchar(30) not null
+
+	CONSTRAINT idioma_id_pk PRIMARY KEY (Id)
+
+);
+
+CREATE TABLE Reportes (
+
+	Id int identity(1,1),
+	Usuario varchar(50) not null,
+	Fecha datetime not null,
+	Frase_sin_traducir varchar(300) not null,
+	Traduccion varchar(300) not null
+
+	CONSTRAINT reporte_id_pk PRIMARY KEY (Id)
+
+);
+
+CREATE TABLE Traductor (
+
+	Id int identity(1,1),
+	Cod_Idioma int not null,
+	PO varchar(300) not null,
+	PT varchar(300) not null
+
+	CONSTRAINT traductor_id_pk PRIMARY KEY (Id),
+	CONSTRAINT codigo_idioma_id_fk FOREIGN KEY (Cod_Idioma) REFERENCES Idioma(Id)
+);
+
+--Area de alters
+
+ALTER TABLE Traductor
+	ADD Popularidad int not null;
+
+ALTER TABLE Idioma
+	ADD Popularidad int not null;
+
+
+
+
+--Area de objetos programables
+
+CREATE OR ALTER PROCEDURE sp_existencia_idioma @P_Nombre_idioma varchar(30)
+AS
+	SELECT Id, IdiomaNuevo, Popularidad
+	FROM Idioma
+	Where IdiomaNuevo = @P_Nombre_idioma;
+
+CREATE OR ALTER PROCEDURE sp_existencia_palabra @P_Palabra varchar(300)
+AS
+	select Id, Cod_Idioma, PO, PT, Popularidad 
+	from Traductor as t
+	where t.PO = @P_Palabra
+
+CREATE OR ALTER PROCEDURE sp_modificar_popularidad @P_Cod_Idioma int,
+@P_Palabra varchar(300)
+AS
+
+	
+	UPDATE Traductor
+	SET Popularidad = Popularidad + 1
+	WHERE Cod_Idioma = @P_Cod_Idioma and PO = @P_Palabra
+
+
+CREATE OR ALTER PROCEDURE sp_registrar_idioma @P_Nombre_idioma varchar(30)
+AS
+	INSERT INTO Idioma ([IdiomaNuevo],[Popularidad]) VALUES (@P_Nombre_idioma,0);
+
+
+CREATE OR ALTER PROCEDURE sp_traducir_palabra @P_Palabra varchar(300), @Cod_Idioma varchar(30)
+AS
+	select t.Id, t.Cod_Idioma, t.PO, t.PT, t.Popularidad 
+	from Traductor as t
+	where t.Cod_Idioma = @P_Cod_Idioma and t.PO = @P_Palabra
+
+CREATE OR ALTER PROCEDURE [dbo].[sp_generar_reporte_bitacora] @P_Usuario varchar(50), 
+@P_Frase_sin_traducir varchar(300), @P_Traduccion varchar(300)
+AS
+	declare @fecha datetime = GETDATE();
+
+	insert into Reportes ([Usuario], [Fecha], [Frase_sin_traducir], [Traduccion]) 
+	values (@P_Usuario, @fecha, @P_Frase_sin_traducir, @P_Traduccion)
+	
+CREATE OR ALTER PROCEDURE sp_devolver_todos_los_idiomas 
+AS
+	SELECT i.Id, i.IdiomaNuevo, i.Popularidad
+	FROM Idioma as i
+
+CREATE OR ALTER PROCEDURE sp_modificar_popularidad_idioma @P_Nombre_idioma varchar(30)
+AS
+
+	declare @idioma int = 0;
+
+	set @idioma = (select id from Idioma where IdiomaNuevo = @P_Nombre_idioma);
+	
+	UPDATE Idioma
+	SET Popularidad = Popularidad + 1
+	WHERE Id = @idioma
+
+CREATE OR ALTER PROCEDURE sp_devolver_100_palabras_mas_populares
+AS
+	SELECT t.Id, t.Cod_Idioma, t.PO, t.PT, t.Popularidad 
+	FROM Traductor as t
+	WHERE t.Id BETWEEN 1 and 100
+
+CREATE OR ALTER PROCEDURE sp_devolver_todas_las_palabras_disponibles
+AS
+	SELECT t.Id, t.Cod_Idioma, t.PO, t.PT, t.Popularidad 
+	FROM Traductor as t
+
+CREATE OR ALTER PROCEDURE sp_devolver_diccionario_por_idioma @P_Cod_Idioma int
+AS
+	
+	SELECT t.Id, t.Cod_Idioma, t.PO, t.PT, t.Popularidad
+	FROM Traductor as t
+	WHERE t.Cod_Idioma = @P_Cod_Idioma
+
+CREATE OR ALTER PROCEDURE sp_historico_traducciones 
+AS
+	SELECT r.Id, r.Usuario, r.Fecha, r.Frase_sin_traducir, r.Traduccion 
+	FROM Reportes as r
+
+CREATE OR ALTER PROCEDURE sp_agregar_palabra_nueva @P_Palabra varchar(300), @P_Traduccion varchar(300), 
+@P_Nombre_idioma varchar(30)
+AS
+
+	INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad])
+	VALUES (@P_Cod_Idioma, @P_Palabra,@P_Traduccion, 0)
+
+	
+
+
+--Inserciones de los diccionarios
+
+--Inserción de idiomas
+
+INSERT INTO Idioma ([Idioma],[Popularidad]) VALUES ('ingles',0);
+
+--Inserción del diccionario Español - Ingles (La 100 palabras más usadas del ingles) 
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'nosotros','us',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'la mayoria','most',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'dia','day',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'dar','give',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'estos','these',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cualquiera','any',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'porque','because',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'querer','want',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'nuevo','new',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'incluso','even',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'hola','hello',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'mesa','table',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'vino','wine',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'amor','love',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'jugar','play',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'juicio','trial',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'botella','bottle',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'sabor','taste',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'poder','power',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'el','he',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'pensar','think',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'encima de','over',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'su','its',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'venir','come',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'solamente','only',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'mirar','look',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ahora','now',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'entonces','then',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'que','what',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ella','she',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'otro','other',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ver','see',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ellos','them',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'perdida','lost',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'entrenamineto','workout',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'gente','people',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'persona','person',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'solo','just',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'bloque','block',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'tiempo','time',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'yo','me',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ir','go',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'pan','bread',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'si','if',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'esconder','hide',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'acerca de','about',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cerveza','beer',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'one','uno',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ajedrez','chess',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'todo','all',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'los','the',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ser','be',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'a','to',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'y','and',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'eso','that',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'tener','have',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'para','for',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'con','with',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'sobre','on',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'usted','you',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'decir','say',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'por','by',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'desde','from',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'voluntad','will',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'hacer','make',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'obtener','get',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'mariposa','butterfly',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'tomar','take',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'alguno','some',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'nosotros','we',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'ausencia','absence',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'acrobata','acrobat',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'jugo','juice',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'dolor','pain',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'esconder','hide',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'antonimo','antonym',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'bebe','baby',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'perro','dog',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'gato','cat',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'arte','art',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cinturon','belt',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'bicicleta','bicycle',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'pelota','ball',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'mapa','map',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'mente','mind',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'limpiar','clean',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'tu','your',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'necesita','need',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'hueso','bone',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'libro','book',0);
+
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'musica','music',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'bailar','dance',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'encontrar','buscar',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'buscar','search',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'campana','bell',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cobija','blanket',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cerveza','beer',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'cuerpo','body',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'pajaro','bird',0);
+INSERT INTO Traductor ([Cod_Idioma], [PO], [PT], [Popularidad]) VALUES (1,'chico','boy',0);
+
+
+
